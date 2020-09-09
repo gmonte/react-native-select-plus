@@ -6,9 +6,11 @@ import {
   View,
   ScrollView,
   TouchableWithoutFeedback,
+  TextInput,
   Text,
   Modal
 } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Overlay = require("./overlay");
 
@@ -36,8 +38,6 @@ const Items = (props) => {
     handleClose,
     onChangeText,
     placeholder,
-    TextInput,
-    TextInputProps
   } = props;
 
   const { x, y } = useMemo(
@@ -46,7 +46,7 @@ const Items = (props) => {
       y: location ? location.fy : 0
     }),
     [location]
-  );
+  )
 
   const renderedItems = useMemo(
     () => items.map((item, idx) => {
@@ -66,7 +66,7 @@ const Items = (props) => {
       );
     }),
     [items]
-  );
+  )
 
   return (
     <Modal
@@ -79,19 +79,35 @@ const Items = (props) => {
       <View style={[styles.container, {left: x, top: y, width: width}]}>
         <View
           style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
+            height: height,
+            borderBottomColor: '#BDBDC1',
+            borderBottomWidth: 2 / window.scale,
           }}
         >
-          <TextInput
-            onChangeText={onChangeText}
-            placeholder={placeholder}
-            underlineColorAndroid="transparent"
-            style={{flex: 5, margin: 0, padding: 0}}
-            {...TextInputProps}
-          />
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}
+          >
+            <Icon
+              name="ios-search"
+              style={{
+                color: 'black',
+                fontSize: 26,
+                marginLeft: 5,
+                flex: 1,
+              }}
+            />
+            <TextInput
+              onChangeText={onChangeText}
+              placeholder={placeholder}
+              underlineColorAndroid="transparent"
+              style={{flex: 5, margin: 0, padding: 0}}
+            />
+          </View>
         </View>
         <ScrollView
           style={{width: width - 2, height: height * 3}}

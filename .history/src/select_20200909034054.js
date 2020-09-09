@@ -1,7 +1,6 @@
 import React, { useRef, useState, useCallback, forwardRef, useImperativeHandle } from "react";
 import PropTypes from "prop-types";
 import {
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -23,8 +22,6 @@ const Select = forwardRef((props, ref) => {
     styleOption,
     styleText,
     searchPlaceholder,
-    TextInput,
-    TextInputProps
   } = props;
 
   const selectRef = useRef(null);
@@ -165,8 +162,6 @@ const Select = forwardRef((props, ref) => {
           handleClose={_handleOptionsClose}
           onChangeText={_onChangeInput}
           placeholder={searchPlaceholder}
-          TextInput={TextInput}
-          TextInputProps={TextInputProps}
         />
       )}
     </View>
@@ -179,12 +174,7 @@ Select.propTypes = {
   onSelect: PropTypes.func,
   search: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
-  initKey: PropTypes.number,
-  TextInput: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.object
-  ]),
-  TextInputProps: PropTypes.object
+  initKey: PropTypes.number
 };
 
 Select.defaultProps = {
@@ -193,10 +183,8 @@ Select.defaultProps = {
   onSelect: () => {},
   search: true,
   initKey: 0,
-  placeholder: 'Select',
-  searchPlaceholder: 'Search',
-  TextInput: TextInput,
-  TextInputProps: {}
+  placeholder: "Select",
+  searchPlaceholder: "Search"
 };
 
 module.exports = Select;

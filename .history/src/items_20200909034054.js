@@ -6,6 +6,7 @@ import {
   View,
   ScrollView,
   TouchableWithoutFeedback,
+  TextInput,
   Text,
   Modal
 } from "react-native";
@@ -36,8 +37,6 @@ const Items = (props) => {
     handleClose,
     onChangeText,
     placeholder,
-    TextInput,
-    TextInputProps
   } = props;
 
   const { x, y } = useMemo(
@@ -90,7 +89,6 @@ const Items = (props) => {
             placeholder={placeholder}
             underlineColorAndroid="transparent"
             style={{flex: 5, margin: 0, padding: 0}}
-            {...TextInputProps}
           />
         </View>
         <ScrollView

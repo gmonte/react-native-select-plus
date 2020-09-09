@@ -18,14 +18,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const Overlay = (props) => {
-  const { show, onPress } = props;
+class Overlay extends React.Component {
+  render() {
+    const { show, onPress } = this.props;
 
-  return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <View style={styles.overlay} />
-    </TouchableWithoutFeedback>
-  );
+    return (
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View style={styles.overlay} />
+      </TouchableWithoutFeedback>
+    );
+  }
 }
 
 module.exports = Overlay;

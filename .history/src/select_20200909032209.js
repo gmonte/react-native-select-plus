@@ -1,7 +1,7 @@
-import React, { useRef, useState, useCallback, forwardRef, useImperativeHandle } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
-  TextInput,
+  Dimensions,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -9,7 +9,7 @@ import {
 const Option = require("./option");
 const Items = require("./items");
 
-const Select = forwardRef((props, ref) => {
+const Select = (props) => {
   const {
     initKey,
     data,
@@ -23,8 +23,6 @@ const Select = forwardRef((props, ref) => {
     styleOption,
     styleText,
     searchPlaceholder,
-    TextInput,
-    TextInputProps
   } = props;
 
   const selectRef = useRef(null);
@@ -119,12 +117,6 @@ const Select = forwardRef((props, ref) => {
     [parentScrollEnable]
   )
 
-  useImperativeHandle(ref, () => ({
-    _reset,
-    _onPress,
-    _handleOptionsClose
-  }))
-
   return (
     <View>
       <View
@@ -149,6 +141,35 @@ const Select = forwardRef((props, ref) => {
             </View>
           </TouchableWithoutFeedback>
         )}
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+          }}
+        >
+          <TouchableWithoutFeedback onPress={_reset}>
+            <Icon
+              name="ios-close"
+              style={{
+                color: 'black',
+                fontSize: 26,
+                marginRight: 15,
+              }}
+            />
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={_onPress}>
+            <Icon
+              name="md-arrow-dropdown"
+              style={{
+                color: 'black',
+                fontSize: 24,
+                marginRight: 5,
+              }}
+            />
+          </TouchableWithoutFeedback>
+        </View>
       </View>
       {showOptions && (
         <Items
@@ -165,13 +186,11 @@ const Select = forwardRef((props, ref) => {
           handleClose={_handleOptionsClose}
           onChangeText={_onChangeInput}
           placeholder={searchPlaceholder}
-          TextInput={TextInput}
-          TextInputProps={TextInputProps}
         />
       )}
     </View>
   );
-})
+} 
 
 Select.propTypes = {
   width: PropTypes.number,
@@ -179,12 +198,7 @@ Select.propTypes = {
   onSelect: PropTypes.func,
   search: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
-  initKey: PropTypes.number,
-  TextInput: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.object
-  ]),
-  TextInputProps: PropTypes.object
+  initKey: PropTypes.number
 };
 
 Select.defaultProps = {
@@ -193,10 +207,8 @@ Select.defaultProps = {
   onSelect: () => {},
   search: true,
   initKey: 0,
-  placeholder: 'Select',
-  searchPlaceholder: 'Search',
-  TextInput: TextInput,
-  TextInputProps: {}
+  placeholder: "Select",
+  searchPlaceholder: "Search"
 };
 
 module.exports = Select;

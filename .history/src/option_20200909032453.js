@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Component, View, Text } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
