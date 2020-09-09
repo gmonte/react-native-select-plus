@@ -94,7 +94,7 @@ const Select = forwardRef((props, ref) => {
     (key, label) => {
       setShowOptions(false);
       setValue(label);
-      setSeatchText("");
+      setSearchText("");
       onSelect(key, label);
       if (parentScrollEnable) {
         parentScrollEnable();
